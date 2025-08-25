@@ -1,0 +1,106 @@
+@media (max-width: 768px) {
+   .header {
+    align-items: center;
+    padding: 0.5rem 1rem; /* уменьшаем отступы */
+    top: 0;
+  }
+
+   .header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* чуть меньше расстояние между бургером и логотипом */
+  }
+  
+    .search {
+    margin: 0;
+  }
+    .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+
+  .cta {
+    width: 100%;
+    padding: 1rem 1.2rem;
+  }
+
+  .hero-image img {
+    max-width: 280px;
+    margin-top: 1rem;
+  }
+
+  .search {
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+
+  .product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+
+  .review-list {
+    grid-template-columns: 1fr;
+  }
+
+  .location iframe {
+    height: 200px;
+  }
+
+   .burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    padding: 0; /* убираем внутренние отступы */
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .burger-line {
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    border-radius: 2px;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100dvh;
+    width: 80vw;
+    max-width: 320px;
+    background: #fff;
+    padding: 2rem 1rem;
+    flex-direction: column;
+    gap: 1rem;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 100;
+  }
+
+  .nav-links.is-open {
+    transform: translateX(0);
+  }
+}
+
+ .footer__nav {
+    gap: 1rem;
+  }
+
+  .footer__info {
+    font-size: 0.9rem;
+  }

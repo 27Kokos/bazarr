@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BazaRR — Свежие овощи и фрукты</title>
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/layout.css" />
+  <link rel="stylesheet" href="styles/components.css" />
+  <link rel="stylesheet" href="styles/media.css" />
+  <link href="https://fonts.cdnfonts.com/css/pt-root-ui" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />              
+</head>
+<body>
+<header class="header">
+  <div class="header-left">
+    <!-- Кнопка бургера -->
+    <button class="burger" aria-label="Открыть меню" aria-expanded="false">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+
+    <!-- Логотип -->
+    <div class="logo">
+      <img src="assets/icons/landing_logo_x2.jpg" alt="Bazarr" style="height: 32px; margin-right: 0.5rem;" />
+      BazaRR.
+    </div>
+  </div>
+
+  <!-- Поиск -->
+  <input type="text" class="search" placeholder="Поиск..." />
+
+  <!-- Навигация -->
+  <nav class="nav-links">
+    <a href="#home">Главная</a>
+    <a href="#catalog">Каталог</a>
+    <a href="#reviews">Отзывы</a>
+    <a href="#location">Как добраться</a>
+  </nav>
+</header>
+
+<!-- Подложка -->
+<div class="backdrop" hidden></div>
+
+  <main>
+    <!-- 🏠 Главная -->
+    <section id="home" class="hero container reval">
+      <div class="hero-text">
+        <h1>BazaRR — только свежее</h1>
+        <p>Откройте для себя свежие овощи и фрукты.</p>
+        <button class="cta" onclick="document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' })">
+            Перейти в каталог
+        </button>
+      </div>
+      <div class="hero-image">
+        <img src="assets/images/hero.png" alt="Пакет с продуктами" />
+      </div>
+    </section>
+
+    <!-- 🛒 Каталог -->
+    <section id="catalog" class="products container">
+      <h2>Популярные товары</h2>
+      <div class="product-grid">
+        <!-- Карточки вставляются через JS -->
+      </div>
+    </section>
+
+    <!-- 💬 Отзывы -->
+<section id="reviews" class="reviews container">
+  <div class="reviews-widget">
+    <iframe src="https://yandex.ru/maps-reviews-widget/101125564764?comments" loading="lazy"></iframe>
+    <a href="https://yandex.ru/maps/org/bazarr/101125564764/" target="_blank" class="reviews-link">
+      BazaRR на карте Санкт‑Петербурга — Яндекс Карты
+    </a>
+  </div>
+</section>
+
+<!-- 📍 Карта -->
+<section id="location" class="location container">
+  <div class="map-widget">
+    <iframe src="https://yandex.ru/map-widget/v1/org/bazarr/101125564764/?ll=30.372902%2C59.752825&z=16" allowfullscreen loading="lazy"></iframe>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <!-- Навигация по секциям -->
+  <nav class="footer__nav">
+    <a href="#home">Главная</a>
+    <a href="#catalog">Каталог</a>
+    <a href="#reviews">Отзывы</a>
+    <a href="#location">Контакты</a>
+  </nav>
+
+  <!-- Контактная информация -->
+  <div class="footer__info">
+    <div><strong>📍 Адрес:</strong> г. Санкт-Петербург, ул. Примерная, д. 10</div>
+    <div><strong>📞 Телефон:</strong> +7 (999) 123‑45‑67</div>
+    <div><strong>🕒 Время работы:</strong> ежедневно с 08:00 до 22:00</div>
+  </div>
+
+  <!-- Соцсети -->
+  <div class="footer__social">
+    <span>Мы в соцсетях:</span>
+    <a href="https://t.me/your_channel" target="_blank" class="footer__social-link">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" 
+           alt="Telegram" class="footer__icon">
+    </a>
+  </div>
+
+  <!-- Копирайт -->
+  <div class="footer__bottom">
+    <a href="https://api.kokodjam.ru/" target="_blank" style="text-decoration: none; color: black;">Создан kokodjam</a>
+  </div>
+</footer>
+
+
+
+    <!-- Подключаем скрипт Leaflet -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
