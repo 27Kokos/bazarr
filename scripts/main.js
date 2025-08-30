@@ -1,52 +1,66 @@
-const products = [
-  { name: 'Bizim Tarla ,,Белая черешня’’', price: '₽255', img: 'bottle1.jpg' },
-  { name: 'Bizim Tarla ,,Слива’’', price: '₽255', img: 'bottle2.jpg' },
-  { name: 'Золото Азербайджана', price: '₽135', img: 'bottle3.jpg' },
-  { name: 'Натахтари', price: '₽150', img: 'bottle4.jpg' },
-];
-
-const grid = document.querySelector('.product-grid');
-
-products.forEach(p => {
-  const card = document.createElement('div');
-  card.className = 'product-card';
-  card.innerHTML = `
-    <img src="assets/images/${p.img}" alt="${p.name}" />
-    <h3>${p.name}</h3>
-    <div class="price">${p.price}</div>
-  `;
-  grid.appendChild(card);
-});
-
-
+// scripts/main.js
 const burger = document.querySelector('.burger');
 const nav = document.querySelector('.nav-links');
 const backdrop = document.querySelector('.backdrop');
 
-function openMenu() {
-  nav.classList.add('is-open');
-  backdrop.hidden = false;
-  burger.setAttribute('aria-expanded', 'true');
+// Проверяем, что элементы бургер-меню существуют
+if (burger && nav && backdrop) {
+    function openMenu() {
+        nav.classList.add('is-open');
+        backdrop.hidden = false;
+        burger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden'; // Блокируем прокрутку фона
+    }
+
+    function closeMenu() {
+        nav.classList.remove('is-open');
+        backdrop.hidden = true;
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = ''; // Разблокируем прокрутку
+    }
+
+    // Открытие/закрытие по клику на бургер
+    burger.addEventListener('click', () => {
+        if (nav.classList.contains('is-open')) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    });
+
+    // Закрытие по клику на подложку
+    backdrop.addEventListener('click', closeMenu);
+
+    // Обработка кликов по ссылкам в меню
+    nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Закрываем меню при клике на любую ссылку
+            closeMenu();
+            
+            // Для якорных ссылок (которые начинаются с #) - плавная прокрутка
+            const href = this.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                e.preventDefault();
+                const targetId = href.substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+            // Для обычных ссылок (например, на catalog.php) - разрешаем стандартный переход
+        });
+    });
+
+    // Закрытие меню при изменении размера окна на desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && nav.classList.contains('is-open')) {
+            closeMenu();
+        }
+    });
+
+} else {
+    console.log('Элементы бургер-меню не найдены (возможно, desktop версия)');
 }
-
-function closeMenu() {
-  nav.classList.remove('is-open');
-  backdrop.hidden = true;
-  burger.setAttribute('aria-expanded', 'false');
-}
-
-burger.addEventListener('click', () => {
-  nav.classList.contains('is-open') ? closeMenu() : openMenu();
-});
-
-backdrop.addEventListener('click', closeMenu);
-
-nav.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const targetId = link.getAttribute('href').substring(1);
-    document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
-    closeMenu();
-  });
-});
-
